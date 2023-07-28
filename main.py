@@ -14,6 +14,7 @@ bot = commands.Bot(
     initial_channels=[os.environ['CHANNEL']]
 )
 
+
 @bot.event
 async def event_ready():
     'Called once when the bot goes online.'
@@ -27,10 +28,18 @@ async def event_message(ctx):
     print(ctx.author.name)
 
 
+
 @bot.command(name='test')
 async def test(ctx):
     await ctx.send('test passed!')
-    
+
+
+@bot.command(name='goose')
+async def goose(ctx):
+    f = open('messages/goose.txt', 'r')
+    for line in f.readlines():
+        await ctx.send(line)
+
 
 if __name__ == '__main__':
     bot.run()
